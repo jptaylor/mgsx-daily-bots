@@ -17,13 +17,13 @@ const TRANSCRIPT_REPLACE = [
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const Transcript: React.FC<Props> = ({ active }) => {
-  const { isCalling } = useContext(AppContext);
+  const { isCalling, character } = useContext(AppContext);
   const [compiledTranscript, setCompiledTranscript] =
     React.useState<string>("");
 
   useEffect(() => {
     setCompiledTranscript("");
-  }, [isCalling]);
+  }, [isCalling, character]);
 
   useVoiceClientEvent(
     VoiceEvent.BotStoppedSpeaking,

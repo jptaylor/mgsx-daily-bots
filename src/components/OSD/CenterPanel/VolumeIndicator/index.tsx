@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
 import { VoiceEvent } from "realtime-ai";
 import { useVoiceClientEvent } from "realtime-ai-react";
+
+import { AppContext } from "@/context";
 
 import styles from "./styles.module.css";
 
@@ -28,18 +30,16 @@ const SVG = ({ volume = "0" }: { volume: string }) => (
 );
 
 const VolumeIndicator: React.FC = () => {
+  const { isCalling } = useContext(AppContext);
   const [volume, setVolume] = useState<number>(0);
   const debouncedVolume = useDebounce(volume, 50);
 
-  /*useVoiceClientEvent(VoiceEvent.LocalAudioLevel, (level) => {
-    if (level > 0.05) {
-      const v = Number(Number(level).toFixed(1)) * 10 + 3;
-      setVolume(v);
-    }
-  });*/
+  useEffect(() => {
+    setVolume(0);
+  }, [isCalling]);
 
   useVoiceClientEvent(VoiceEvent.RemoteAudioLevel, (level) => {
-    if (level > 0.05) {
+    if (level > 0.001) {
       const v = Math.floor(Number(level) * 100);
       setVolume(Math.min(Math.max(v, 0), 9));
     }
