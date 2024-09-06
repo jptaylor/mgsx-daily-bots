@@ -11,7 +11,7 @@ export const useIdleTimer = () => {
   const startTimer = useCallback(() => {
     idleTimerRef.current = setTimeout(() => {
       runIdleCheck();
-    }, 1000 * 8);
+    }, 1000 * 6.5);
   }, [runIdleCheck]);
 
   useEffect(() => {

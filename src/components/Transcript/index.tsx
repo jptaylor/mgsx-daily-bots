@@ -1,7 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext, useEffect } from "react";
 import { VoiceEvent } from "realtime-ai";
 import { useVoiceClientEvent } from "realtime-ai-react";
 
+import { AppContext } from "@/context";
 import { cn } from "@/utils/tailwind";
 
 type Props = {
@@ -13,13 +14,30 @@ const TRANSCRIPT_REPLACE = [
   ["Fahks-Hownd", "Fox Hound"],
 ];
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const Transcript: React.FC<Props> = ({ active }) => {
-  const [currentTranscript, setCurrentTranscript] = React.useState<string>("");
+  const { isCalling } = useContext(AppContext);
+  const [compiledTranscript, setCompiledTranscript] =
+    React.useState<string>("");
+
+  useEffect(() => {
+    setCompiledTranscript("");
+  }, [isCalling]);
+
+  useVoiceClientEvent(
+    VoiceEvent.BotStoppedSpeaking,
+    useCallback(async () => {
+      await delay(2000);
+      setCompiledTranscript("");
+    }, [])
+  );
 
   useVoiceClientEvent(
     VoiceEvent.BotTranscript,
     useCallback((transcript: string) => {
-      setCurrentTranscript(replaceWords(transcript));
+      setCompiledTranscript((t) => t + " " + replaceWords(transcript));
+      //setCurrentTranscript(replaceWords(transcript));
     }, [])
   );
 
@@ -38,7 +56,7 @@ const Transcript: React.FC<Props> = ({ active }) => {
         !active && "hidden"
       )}
     >
-      <p className="text-3xl leading-relaxed">{currentTranscript}</p>
+      <p className="text-3xl leading-relaxed">{compiledTranscript}</p>
     </div>
   );
 };

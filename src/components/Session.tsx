@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { VoiceError } from "realtime-ai";
 import {
   useVoiceClient,
@@ -9,6 +9,7 @@ import { AppContext } from "@/context";
 import { useIdleTimer } from "@/hooks/useIdleTimer";
 
 import CallNotification from "./CallNotification";
+import Footer from "./Footer";
 import OSD from "./OSD";
 import Phonebook from "./Phonebook";
 import Pixelate from "./Pixelate";
@@ -22,10 +23,15 @@ export default function Session() {
   const [appState, setAppState] = useState<
     "idle" | "ready" | "connecting" | "connected"
   >("idle");
-  const { character, switchCharacter, runIdleCheck } = useContext(AppContext);
+  const { switchCharacter, isCalling } = useContext(AppContext);
   const [showPhonebook, setShowPhonebook] = useState<boolean | undefined>(
     undefined
   );
+  const musicRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    setShowPhonebook(false);
+  }, [isCalling]);
 
   useIdleTimer();
 
@@ -63,6 +69,14 @@ export default function Session() {
       setError((e as VoiceError).message || "Unknown error occured");
       voiceClient.disconnect();
     }
+
+    // Start background music
+    const music = new Audio("/music.mp3");
+    music.currentTime = 0;
+    music.volume = 0.04;
+    music.loop = true;
+    music.play();
+    musicRef.current = music;
   }
 
   async function disconnect() {
@@ -79,6 +93,7 @@ export default function Session() {
 
   return (
     <div className="flex flex-col h-full items-center w-full">
+      <Pixelate />
       <OSD
         handleTogglePhonebook={() => {
           setShowPhonebook(!showPhonebook);
@@ -89,7 +104,7 @@ export default function Session() {
       />
       <Transcript active={!showPhonebook} />
       <Phonebook active={showPhonebook} />
-      <Pixelate />
+      <Footer handleDisconnect={() => disconnect()} />
     </div>
   );
 }
