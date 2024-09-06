@@ -62,7 +62,7 @@ const OSD: React.FC<OSDProps> = ({
     changeFrequency(up);
     intervalRef.current = setInterval(() => {
       changeFrequency(up);
-    }, 150);
+    }, 100);
   }
 
   function handleMouseUp() {
