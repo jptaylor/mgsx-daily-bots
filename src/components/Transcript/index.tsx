@@ -12,7 +12,7 @@ type Props = {
 const TRANSCRIPT_REPLACE = [
   ["Snayk", "Snake"],
   ["Fahks-Hownd", "Fox Hound"],
-  ["Oh-tuh-kon", "Otacon"],
+  ["Oh-tah-kon", "Otacon"],
 ];
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
