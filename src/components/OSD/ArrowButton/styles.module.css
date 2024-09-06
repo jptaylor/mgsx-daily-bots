@@ -1,0 +1,24 @@
+.button {
+  background-color: theme(colors.mgs.darkest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: theme(colors.mgs.dark);
+  padding: 6px 24px;
+  line-height: 1;
+  margin: 0 auto;
+
+  &:global(.flipped) {
+    transform: scaleX(-1);
+  }
+
+  &:hover {
+    background-color: theme(colors.mgs.dark);
+    color: theme(colors.mgs.light);
+  }
+}
+
+.button svg {
+  height: 28px;
+  width: auto;
+}

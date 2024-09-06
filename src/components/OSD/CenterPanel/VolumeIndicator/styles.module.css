@@ -1,0 +1,50 @@
+.volumeIndicator {
+  width: var(--osd-width);
+  height: var(--osd-height);
+  position: relative;
+}
+
+.bars {
+  width: 100%;
+  height: 100%;
+}
+
+.bars path {
+  fill: theme(colors.mgs.dark);
+}
+
+.bars[data-vol="1"] path:nth-child(9) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="2"] path:nth-last-child(n + 1):nth-last-child(-n + 2) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="3"] path:nth-last-child(n + 1):nth-last-child(-n + 3) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="4"] path:nth-last-child(n + 1):nth-last-child(-n + 4) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="5"] path:nth-last-child(n + 1):nth-last-child(-n + 5) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="6"] path:nth-last-child(n + 1):nth-last-child(-n + 6) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="7"] path:nth-last-child(n + 1):nth-last-child(-n + 7) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="8"] path:nth-last-child(n + 1):nth-last-child(-n + 8) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.bars[data-vol="9"] path:nth-last-child(n + 1):nth-last-child(-n + 9) {
+  fill: theme(colors.mgs.lightest);
+}

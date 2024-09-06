@@ -3,31 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --osd-background-color: theme(colors.mgs.darkest);
+  --osd-width: 304px;
+  --osd-height: 177px;
+  --osd-padding: 30px;
+  --osd-frequency-size: 68px;
+  --portrait-bar-sm-h: 2px;
+  --portrait-bar-lg-h: 36px;
+  --portrait-lg-w: calc(208px / 2);
+  --portrait-lg-h: calc(356px / 2);
+
+  @screen md {
+    --portrait-lg-w: calc(208px / 1.5);
+    --portrait-lg-h: calc(356px / 1.5);
+  }
+
+  @screen lg {
+    --portrait-lg-w: 208px;
+    --portrait-lg-h: 356px;
+  }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+html {
+  filter: url("#pixelate");
+}
+
+html,
+body {
+  background-color: black;
+  color: white;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  height: 100vh;
+  height: 100svh;
+  width: 100vw;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -1,0 +1,130 @@
+.frequency {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.number {
+  width: auto;
+  height: 100%;
+  margin: 0px 6px;
+
+  &:last-of-type {
+    margin-right: 0px;
+  }
+}
+
+.small {
+  width: auto;
+  height: 80%;
+  margin: 0px 6px;
+}
+
+.dot {
+  fill: theme(colors.mgs.lightest);
+  height: 10%;
+  width: auto;
+  margin: 0px 5px;
+}
+
+.small path,
+.number path {
+  fill: theme(colors.mgs.dark);
+}
+
+.small:first-of-type path:nth-child(2),
+.small:first-of-type path:nth-child(3) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.small:nth-child(2) path:nth-child(2),
+.small:nth-child(2) path:nth-child(3),
+.small:nth-child(2) path:nth-child(5),
+.small:nth-child(2) path:nth-child(6) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="0"] path:nth-child(1),
+.number[data-num="0"] path:nth-child(2),
+.number[data-num="0"] path:nth-child(3),
+.number[data-num="0"] path:nth-child(4),
+.number[data-num="0"] path:nth-child(5),
+.number[data-num="0"] path:nth-child(7) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="1"] path:nth-child(3),
+.number[data-num="1"] path:nth-child(2) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="2"] path:nth-child(1),
+.number[data-num="2"] path:nth-child(2),
+.number[data-num="2"] path:nth-child(4),
+.number[data-num="2"] path:nth-child(6),
+.number[data-num="2"] path:nth-child(7) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="3"] path:nth-child(1),
+.number[data-num="3"] path:nth-child(2),
+.number[data-num="3"] path:nth-child(3),
+.number[data-num="3"] path:nth-child(6),
+.number[data-num="3"] path:nth-child(7) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="4"] path:nth-child(2),
+.number[data-num="4"] path:nth-child(3),
+.number[data-num="4"] path:nth-child(5),
+.number[data-num="4"] path:nth-child(6) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="5"] path:nth-child(1),
+.number[data-num="5"] path:nth-child(3),
+.number[data-num="5"] path:nth-child(5),
+.number[data-num="5"] path:nth-child(6),
+.number[data-num="5"] path:nth-child(7) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="6"] path:nth-child(1),
+.number[data-num="6"] path:nth-child(3),
+.number[data-num="6"] path:nth-child(5),
+.number[data-num="6"] path:nth-child(6),
+.number[data-num="6"] path:nth-child(7),
+.number[data-num="6"] path:nth-child(4) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="7"] path:nth-child(1),
+.number[data-num="7"] path:nth-child(2),
+.number[data-num="7"] path:nth-child(3) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="8"] path:nth-child(1),
+.number[data-num="8"] path:nth-child(2),
+.number[data-num="8"] path:nth-child(3),
+.number[data-num="8"] path:nth-child(4),
+.number[data-num="8"] path:nth-child(5),
+.number[data-num="8"] path:nth-child(6),
+.number[data-num="8"] path:nth-child(7) {
+  fill: theme(colors.mgs.lightest);
+}
+
+.number[data-num="9"] path:nth-child(1),
+.number[data-num="9"] path:nth-child(3),
+.number[data-num="9"] path:nth-child(5),
+.number[data-num="9"] path:nth-child(6),
+.number[data-num="9"] path:nth-child(7),
+.number[data-num="9"] path:nth-child(2) {
+  fill: theme(colors.mgs.lightest);
+}

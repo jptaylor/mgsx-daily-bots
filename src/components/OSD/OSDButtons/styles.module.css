@@ -1,0 +1,32 @@
+.pttButton,
+.button {
+  position: relative;
+  background-color: theme(colors.mgs.darkest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: theme(colors.mgs.dark);
+  padding: 6px 0;
+  line-height: 1;
+  margin: 0 auto;
+  width: 240px;
+  border-left: 10px solid black;
+  border-right: 10px solid black;
+  z-index: 2;
+}
+
+.button:hover {
+  background-color: theme(colors.mgs.dark);
+  color: theme(colors.mgs.lightest);
+}
+
+.pttButton svg,
+.button svg {
+  height: 20px;
+  width: auto;
+}
+
+.active {
+  background-color: theme(colors.mgs.dark);
+  color: theme(colors.mgs.light);
+}

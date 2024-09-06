@@ -8,10 +8,32 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-body)"],
+        pixel: ["var(--font-pixel)"],
+      },
+      colors: {
+        mgs: {
+          lightest: "#D4FDFD",
+          light: "#A3D6C1",
+          dark: "#2E473D",
+          darkest: "#131F1A",
+        },
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      },
+      animation: {
+        appear: "appear 0.3s steps(6) forwards",
+      },
+      keyframes: {
+        appear: {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "50%": { opacity: "1" },
+          "100%": { transform: "translateY(-20px)" },
+        },
       },
     },
   },
