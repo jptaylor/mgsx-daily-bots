@@ -55,7 +55,7 @@ export const CHARACTERS: Character[] = [
   },
   {
     name: CharacterEnum.MeiLing,
-    voice_id: "34f08c6e-b836-4f8e-8a90-189203298251",
+    voice_id: "3d882052-d1e5-4353-b635-1cd30470cdae",
     prompt: `Your name is Mei Ling, a support operative from Metal Gear Solid. You work for a government agency called 'Fox Hound'. ${BASE_PROMPT} You don't know Meryl's frequency. `,
     frequency: "0.85",
   },
@@ -67,13 +67,13 @@ export const CHARACTERS: Character[] = [
   },
   {
     name: CharacterEnum.Roy,
-    voice_id: "34f08c6e-b836-4f8e-8a90-189203298251",
+    voice_id: "21fae03c-e455-4d58-91df-2e31b170bc15",
     prompt: `Your name is Roy Campbell, a mission briefing operative from Metal Gear Solid. You work for a government agency called 'Fox Hound'. ${BASE_PROMPT} You don't know Meryl's frequency. `,
     frequency: "1.80",
   },
   {
     name: CharacterEnum.Otacon,
-    voice_id: "34f08c6e-b836-4f8e-8a90-189203298251",
+    voice_id: "ebf76702-c01c-46f5-9700-ec207c5bbce3",
     prompt: `Your name is Otacon, a technical suppoert operative from Metal Gear Solid. You work for a government agency called 'Fox Hound'. ${BASE_PROMPT} You don't know Meryl's frequency. `,
     frequency: "1.98",
   },
