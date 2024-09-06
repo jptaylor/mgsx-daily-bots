@@ -13,7 +13,7 @@ type Props = {
 const TRANSCRIPT_REPLACE = [
   ["Snayk", "Snake"],
   ["Fahks-Hownd", "Fox Hound"],
-  ["ota-kon", "Otacon"],
+  ["oto-kon", "Otacon"],
 ];
 
 const Transcript: React.FC<Props> = ({ active }) => {
