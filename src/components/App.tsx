@@ -20,7 +20,7 @@ const assets = [
   "/codecopen.wav",
   "/codecover.wav",
   "/codecphonebook.wav",
-  "/codecphonebookentry.wav",
+  "/codecphoneentry.wav",
   "/zip.wav",
   "/gunshot.wav",
   "/music.mp3",
