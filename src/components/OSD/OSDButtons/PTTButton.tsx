@@ -1,5 +1,6 @@
-import styles from "./styles.module.css";
 import PTTSVG from "@/components/svgs/PTTSVG";
+
+import styles from "./styles.module.css";
 
 interface PTTButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   active?: boolean;
