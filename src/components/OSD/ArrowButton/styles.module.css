@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   color: theme(colors.mgs.dark);
-  padding: 6px 24px;
+  padding: 8px 14px;
   line-height: 1;
   margin: 0 auto;
 
@@ -16,9 +16,21 @@
     background-color: theme(colors.mgs.dark);
     color: theme(colors.mgs.light);
   }
+
+  @screen md {
+    padding: 6px 24px;
+  }
 }
 
 .button svg {
-  height: 28px;
+  height: 16px;
   width: auto;
+
+  @screen md {
+    height: 20px;
+  }
+
+  @screen lg {
+    height: 28px;
+  }
 }

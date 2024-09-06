@@ -42,35 +42,37 @@ const TitleScreen: React.FC<TitleScreenProps> = ({ handleStart }) => {
           className="opacity-0 animate-bgAppear mx-auto"
         />
       </header>
-      <div className="animate-appear bg-black/50 border-[3px] border-black border-l-[30px] p-8 flex flex-col gap-8 max-w-3xl relative z-1">
-        <p className="text-lg">
-          Please configure your microphone and speakers below
-        </p>
+      <div className="animate-appear relative p-8  w-full max-w-lg z-2 before:content-[''] before:absolute before:inset-0 before:bg-black before:z-1 before:blur-3xl">
+        <div className="relative z-2 flex flex-col gap-10">
+          <p className="text-lg">
+            Works best in a quiet environment with headphones
+          </p>
 
-        <DeviceSelect hideMeter={false} />
+          <DeviceSelect hideMeter={false} />
 
-        <div className="flex flex-row items-center justify-between">
-          Pixelate effect {pixelate}
-          <Switch
-            checked={pixelate}
-            onCheckedChange={() => setPixelate(!pixelate)}
-          />
+          <div className="flex flex-row items-center justify-between">
+            Pixelate effect {pixelate}
+            <Switch
+              checked={pixelate}
+              onCheckedChange={() => setPixelate(!pixelate)}
+            />
+          </div>
+
+          <Button
+            variant="ghost"
+            className="self-center"
+            onClick={() => {
+              playCodecSound("gunshot");
+              setStarted(true);
+
+              setTimeout(() => {
+                handleStart();
+              }, 2000);
+            }}
+          >
+            Begin mission
+          </Button>
         </div>
-
-        <Button
-          variant="ghost"
-          className="self-center"
-          onClick={() => {
-            playCodecSound("gunshot");
-            setStarted(true);
-
-            setTimeout(() => {
-              handleStart();
-            }, 2000);
-          }}
-        >
-          Begin mission
-        </Button>
       </div>
       <footer className="text-center relative z-1 text-xs md:text-sm opacity-50">
         Metal Gear Solid and all related content &copy; Konami Digital

@@ -9,10 +9,14 @@
   padding: 6px 0;
   line-height: 1;
   margin: 0 auto;
-  width: 240px;
+  width: 140px;
   border-left: 10px solid black;
   border-right: 10px solid black;
   z-index: 2;
+
+  @screen lg {
+    width: 240px;
+  }
 }
 
 .button:hover {
@@ -22,8 +26,12 @@
 
 .pttButton svg,
 .button svg {
-  height: 20px;
+  height: 10px;
   width: auto;
+
+  @screen lg {
+    height: 20px;
+  }
 }
 
 .active {

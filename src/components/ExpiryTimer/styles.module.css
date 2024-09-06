@@ -1,13 +1,20 @@
-.frequency {
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: theme(spacing.3);
+}
+
+.label {
+  font-size: theme(fontSize.sm);
+  color: theme(colors.mgs.dark);
+}
+
+.numbers {
   display: flex;
   flex-flow: row nowrap;
   align-items: flex-end;
-  justify-content: flex-end;
-}
-
-.disabled {
-  pointer-events: none;
-  opacity: 0.5;
+  justify-content: flex-start;
+  height: 30px;
 }
 
 .number {
@@ -22,18 +29,7 @@
   @screen md {
     margin: 0px 4px;
   }
-
-  @screen lg {
-    margin: 0px 6px;
-  }
 }
-
-.small {
-  width: auto;
-  height: 80%;
-  margin: 0px 6px;
-}
-
 .dot {
   fill: theme(colors.mgs.lightest);
   height: 10%;

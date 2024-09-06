@@ -98,11 +98,11 @@ const Phonebook: React.FC<PhonebookProps> = ({ active }) => {
   return (
     <div
       className={cn(
-        "w-full z-0 relative after:content-[''] after:absolute after:inset-0 after:top-[-40px] after:border after:border-mgs-darkest after:z-0 after:pointer-events-none",
+        "w-full xl:max-w-7xl z-0 relative after:content-[''] after:absolute after:inset-0 after:top-[-40px] after:border after:border-mgs-darkest after:z-0 after:pointer-events-none",
         !active && "hidden"
       )}
     >
-      <div className="w-full grid grid-cols-2 justify-between p-8 pt-2 h-[var(--codec-bottom-h)] overflow-y-scroll">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 justify-between p-8 pt-2 h-[var(--codec-bottom-h)] overflow-y-scroll">
         {CHARACTERS.map((c) => (
           <PhonebookEntry
             key={c.name}

@@ -22,7 +22,7 @@ export type Character = {
 const BASE_PROMPT: string = `
   Anytime you output "Fox Hound", output it phonetically as "Fahks-Hownd."
   Anytime you output "Snake", output it phonetically as "Snayk."
-  Anytime you output "Otacon", output it phonetically as "Oh-tah-kon."
+  Anytime you output "Otacon", output it phonetically as "ota-kon."
   My name is Agent Unknown, refer to me as Agent. Talk to me in character.
   Hal (Otacons) frequency is 141.98.
   Your output will be converted to audio so don't include special characters in your answers. 

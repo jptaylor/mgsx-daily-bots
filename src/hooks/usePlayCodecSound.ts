@@ -7,6 +7,7 @@ export type Sound =
   | "freq"
   | "tray"
   | "entry"
+  | "zip"
   | "gunshot";
 const SoundMap = {
   open: "/codecopen.wav",
@@ -15,6 +16,7 @@ const SoundMap = {
   freq: "/codecfreq.wav",
   tray: "/codecphonebook.wav",
   entry: "/codecphoneentry.wav",
+  zip: "/zip.wav",
   gunshot: "/gunshot.wav",
 };
 

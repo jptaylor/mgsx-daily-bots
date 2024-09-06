@@ -1,4 +1,5 @@
 import MemorySVG from "@/components/svgs/MemorySVG";
+import { usePlayCodecSound } from "@/hooks/usePlayCodecSound";
 
 import styles from "./styles.module.css";
 
@@ -11,8 +12,11 @@ const MemoryButton: React.FC<MemoryButtonProps> = ({
   active = false,
   ...props
 }) => {
+  const playCodecSound = usePlayCodecSound();
+
   return (
     <button
+      onMouseEnter={() => playCodecSound("zip")}
       className={`${styles.button} ${active ? styles.active : ""}`}
       {...props}
     >

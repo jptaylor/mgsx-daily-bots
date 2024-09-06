@@ -1,6 +1,10 @@
 .container {
   padding: 0 var(--osd-padding);
   width: 100%;
+
+  @screen xl {
+    max-width: theme(maxWidth.7xl);
+  }
 }
 
 .inner {

@@ -1,3 +1,5 @@
+import { usePlayCodecSound } from "@/hooks/usePlayCodecSound";
+
 import styles from "./styles.module.css";
 
 const ArrowSVG = () => (
@@ -26,8 +28,10 @@ const ArrowButton: React.FC<ArrowButtonProps> = ({
   flipped = false,
   ...props
 }) => {
+  const playCodecSound = usePlayCodecSound();
   return (
     <button
+      onMouseEnter={() => playCodecSound("zip")}
       className={`${styles.button} ${flipped ? "flipped" : ""}`}
       {...props}
     >

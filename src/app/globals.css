@@ -4,21 +4,29 @@
 
 :root {
   --osd-background-color: theme(colors.mgs.darkest);
-  --osd-width: 304px;
-  --osd-height: 177px;
-  --osd-padding: 30px;
-  --osd-frequency-size: 68px;
+  --osd-width: 164px;
+  --osd-height: 96px;
+  --osd-padding: 10px;
+  --osd-frequency-size: 36px;
   --portrait-bar-sm-h: 2px;
   --portrait-bar-lg-h: 36px;
   --portrait-lg-w: calc(208px / 2);
   --portrait-lg-h: calc(356px / 2);
 
   @screen md {
+    --osd-width: 241px;
+    --osd-height: 140px;
+    --osd-padding: 20px;
+    --osd-frequency-size: 48px;
     --portrait-lg-w: calc(208px / 1.5);
     --portrait-lg-h: calc(356px / 1.5);
   }
 
   @screen lg {
+    --osd-frequency-size: 68px;
+    --osd-width: 304px;
+    --osd-height: 177px;
+    --osd-padding: 30px;
     --portrait-lg-w: 208px;
     --portrait-lg-h: 356px;
   }

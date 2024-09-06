@@ -10,6 +10,7 @@ import { AppProvider } from "@/context";
 import { config, services, timeout } from "@/rtvi.config";
 
 import Pixelate from "./Pixelate";
+import Sandbox from "./Sandbox";
 import Session from "./Session";
 import Splash from "./Splash";
 
@@ -20,6 +21,7 @@ const assets = [
   "/codecover.wav",
   "/codecphonebook.wav",
   "/codecphonebookentry.wav",
+  "/zip.wav",
   "/gunshot.wav",
   "/music.mp3",
   "/agent_base.png",

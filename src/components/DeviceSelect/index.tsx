@@ -22,7 +22,7 @@ export const DeviceSelect: React.FC<DeviceSelectProps> = ({
 
   return (
     <div className="flex flex-col flex-wrap gap-4">
-      <Field label="Microphone" error={false}>
+      <Field label="Select microphone:" error={false}>
         <Select
           onChange={(e) => updateMic(e.currentTarget.value)}
           value={selectedMic?.deviceId}
