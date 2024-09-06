@@ -41,9 +41,11 @@ export default function App() {
   const [voiceClient, setVoiceClient] = useState<DailyVoiceClient | null>(null);
 
   useEffect(() => {
-    if (voiceClient || !mountedRef.current) {
+    if (voiceClient || mountedRef.current) {
       return;
     }
+
+    mountedRef.current = true;
 
     const vc = new DailyVoiceClient({
       baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "/api",
@@ -58,12 +60,6 @@ export default function App() {
   }, [voiceClient]);
 
   useEffect(() => {
-    if (mountedRef.current) {
-      return;
-    }
-
-    mountedRef.current = true;
-
     const preloader = Preload();
 
     preloader.fetch(assets).then(() => {
@@ -71,8 +67,16 @@ export default function App() {
     });
   }, []);
 
+  if (!voiceClient) {
+    return (
+      <div>
+        <Loader2 className="animate-spin" />
+      </div>
+    );
+  }
+
   return (
-    <VoiceClientProvider voiceClient={voiceClient!}>
+    <VoiceClientProvider voiceClient={voiceClient}>
       <AppProvider>
         <Pixelate />
 
