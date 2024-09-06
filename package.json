@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
     "@uidotdev/usehooks": "^2.4.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "file-loader": "^6.2.0",
+    "lucide-react": "^0.439.0",
     "next": "14.2.7",
+    "preload-it": "^1.4.0",
     "react": "^18",
     "react-dom": "^18",
     "realtime-ai": "^0.1.9",

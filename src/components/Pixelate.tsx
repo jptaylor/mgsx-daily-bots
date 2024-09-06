@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { AppContext } from "@/context";
 
 interface PixelateProps {}
 
 const Pixelate: React.FC<PixelateProps> = () => {
-  //if (!ui?.pixelate) return null;
+  const { pixelate } = useContext(AppContext);
+
+  if (!pixelate) return null;
 
   return (
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="0" height="0">

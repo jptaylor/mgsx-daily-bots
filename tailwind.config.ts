@@ -26,9 +26,14 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       animation: {
+        fadeIn: "fadeIn 0.3s forwards",
         appear: "appear 0.3s steps(6) forwards",
       },
       keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
         appear: {
           "0%": { opacity: "0", transform: "translateY(20px)" },
           "50%": { opacity: "1" },

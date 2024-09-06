@@ -5,24 +5,16 @@ import { usePlayCodecSound } from "@/hooks/usePlayCodecSound";
 
 import { cn } from "../../../utils/tailwind";
 
-import AgentBase from "./assets/agent_base.png";
-import OtaconBase from "./assets/hal_base.png";
-import MeilingBase from "./assets/meiling_base.png";
-import MerylBase from "./assets/meryl_base.png";
-import NaomiBase from "./assets/naomi_base.png";
-import RoyBase from "./assets/roy_base.png";
-import SnakeBase from "./assets/snake_base.png";
-
 import styles from "./styles.module.css";
 
-const characterImageMap: { [key: string]: StaticImageData } = {
-  agent: AgentBase,
-  snake: SnakeBase,
-  naomi: NaomiBase,
-  roy: RoyBase,
-  meryl: MerylBase,
-  meiling: MeilingBase,
-  otacon: OtaconBase,
+const characterImageMap: { [key: string]: string } = {
+  agent: "/agent_base.png",
+  snake: "/snake_base.png",
+  naomi: "/naomi_base.png",
+  roy: "/roy_base.png",
+  meryl: "/meryl_base.png",
+  meiling: "/meiling_base.png",
+  otacon: "/hal_base.png",
 };
 
 export type PortraitProps = {
@@ -84,6 +76,8 @@ const Portrait: React.FC<PortraitProps> = React.memo(
               priority
               src={characterImageMap[character]}
               className={styles.base}
+              width={1248}
+              height={712}
               alt=""
             />
             <Image
@@ -96,6 +90,8 @@ const Portrait: React.FC<PortraitProps> = React.memo(
                   eyesRef.current.style.animationName = "";
                 }
               }}
+              width={1248}
+              height={712}
               alt=""
             />
             <Image
@@ -103,6 +99,8 @@ const Portrait: React.FC<PortraitProps> = React.memo(
               src={characterImageMap[character]}
               className={cn(styles.mouth, talking && styles.talking)}
               ref={mouthRef}
+              width={1248}
+              height={712}
               alt=""
             />
           </>

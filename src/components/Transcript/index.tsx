@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { VoiceEvent } from "realtime-ai";
 import { useVoiceClientEvent } from "realtime-ai-react";
 
@@ -15,22 +15,38 @@ const TRANSCRIPT_REPLACE = [
   ["Oh-tah-kon", "Otacon"],
 ];
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
 const Transcript: React.FC<Props> = ({ active }) => {
   const { isCalling, character } = useContext(AppContext);
   const [compiledTranscript, setCompiledTranscript] =
     React.useState<string>("");
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(
+    () => () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    },
+    []
+  );
 
   useEffect(() => {
     setCompiledTranscript("");
+
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   }, [isCalling, character]);
 
   useVoiceClientEvent(
     VoiceEvent.BotStoppedSpeaking,
-    useCallback(async () => {
-      await delay(2000);
-      setCompiledTranscript("");
+    useCallback(() => {
+      timeoutRef.current = setTimeout(() => {
+        setCompiledTranscript("");
+      }, 2000);
+    }, [])
+  );
+
+  useVoiceClientEvent(
+    VoiceEvent.BotStartedSpeaking,
+    useCallback(() => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     }, [])
   );
 
@@ -38,7 +54,6 @@ const Transcript: React.FC<Props> = ({ active }) => {
     VoiceEvent.BotTranscript,
     useCallback((transcript: string) => {
       setCompiledTranscript((t) => t + " " + replaceWords(transcript));
-      //setCurrentTranscript(replaceWords(transcript));
     }, [])
   );
 

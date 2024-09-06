@@ -32,6 +32,8 @@ interface AppContextType {
   discoveredFrequencies: CharacterEnum[];
   isCalling: boolean;
   setIsCalling: (isCalling: boolean) => void;
+  pixelate: boolean;
+  setPixelate: (pixelated: boolean) => void;
 }
 
 export const AppContext = createContext<AppContextType>({
@@ -68,6 +70,10 @@ export const AppContext = createContext<AppContextType>({
   setIsCalling: () => {
     throw new Error("setIsCalling function must be overridden");
   },
+  pixelate: true,
+  setPixelate: () => {
+    throw new Error("setPixelate function must be overridden");
+  },
 });
 AppContext.displayName = "AppContext";
 
@@ -99,6 +105,7 @@ export const AppProvider: React.FC<
     CharacterEnum.Roy,
     CharacterEnum.MeiLing,
   ]);
+  const [pixelate, setPixelate] = useState<boolean>(true);
 
   const playCodecSound = usePlayCodecSound();
 
@@ -266,6 +273,8 @@ export const AppProvider: React.FC<
         isCalling,
         currentFrequency,
         setCurrentFrequency,
+        pixelate,
+        setPixelate,
       }}
     >
       {children}

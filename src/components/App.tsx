@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
+//@ts-expect-error - Preload is not typed
+import Preload from "preload-it";
 import { LLMHelper } from "realtime-ai";
 import { DailyVoiceClient } from "realtime-ai-daily";
 import { VoiceClientAudio, VoiceClientProvider } from "realtime-ai-react";
@@ -7,8 +10,30 @@ import { AppProvider } from "@/context";
 import { config, services, timeout } from "@/rtvi.config";
 
 import Session from "./Session";
+import Splash from "./Splash";
+
+const assets = [
+  "/codeccall.wav",
+  "/codecfreq.wav",
+  "/codecopen.wav",
+  "/codecover.wav",
+  "/codecphonebook.wav",
+  "/codecphonebookentry.wav",
+  "/gunshot.wav",
+  "/music.mp3",
+  "/agent_base.png",
+  "/hal_base.png",
+  "/meiling_base.png",
+  "/meryl_base.png",
+  "/naomi_base.png",
+  "/roy_base.png",
+  "/snake_base.png",
+];
 
 export default function App() {
+  const mountedRef = useRef(false);
+  const [assetsLoaded, setAssetsLoaded] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
   const [voiceClient, setVoiceClient] = useState<DailyVoiceClient | null>(null);
 
   useEffect(() => {
@@ -28,14 +53,36 @@ export default function App() {
     setVoiceClient(vc);
   }, [voiceClient]);
 
+  useEffect(() => {
+    if (mountedRef.current) {
+      return;
+    }
+
+    mountedRef.current = true;
+
+    const preloader = Preload();
+
+    preloader.fetch(assets).then(() => {
+      setAssetsLoaded(true);
+    });
+  }, []);
+
   if (!voiceClient) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Loader2 className="animate-spin" />
+      </div>
+    );
   }
 
   return (
     <VoiceClientProvider voiceClient={voiceClient}>
       <AppProvider>
-        <Session />
+        {showSplash ? (
+          <Splash onReady={() => setShowSplash(false)} ready={assetsLoaded} />
+        ) : (
+          <Session />
+        )}
       </AppProvider>
       <VoiceClientAudio />
     </VoiceClientProvider>
