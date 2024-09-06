@@ -8,7 +8,8 @@ export type Sound =
   | "tray"
   | "entry"
   | "zip"
-  | "gunshot";
+  | "gunshot"
+  | "gameover";
 const SoundMap = {
   open: "/codecopen.wav",
   close: "/codecover.wav",
@@ -18,6 +19,7 @@ const SoundMap = {
   entry: "/codecphoneentry.wav",
   zip: "/zip.wav",
   gunshot: "/gunshot.wav",
+  gameover: "/gameover.mp3",
 };
 
 export const usePlayCodecSound = () => {

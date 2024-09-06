@@ -11,6 +11,7 @@ import { useIdleTimer } from "@/hooks/useIdleTimer";
 import { Alert } from "./ui/alert";
 import CallNotification from "./CallNotification";
 import Footer from "./Footer";
+import Gameover from "./Gameover";
 import OSD from "./OSD";
 import Phonebook from "./Phonebook";
 import TitleScreen from "./TitleScreen";
@@ -21,9 +22,9 @@ export default function Session() {
   const transportState = useVoiceClientTransportState();
 
   const [error, setError] = useState<string | null>(null);
-  const [appState, setAppState] = useState<"idle" | "connecting" | "connected">(
-    "idle"
-  );
+  const [appState, setAppState] = useState<
+    "idle" | "connecting" | "connected" | "gameover"
+  >("idle");
   const { switchCharacter, isCalling } = useContext(AppContext);
   const [showPhonebook, setShowPhonebook] = useState<boolean | undefined>(
     undefined
@@ -48,6 +49,9 @@ export default function Session() {
         break;
       case "ready":
         setAppState("connected");
+        break;
+      case "disconnected":
+        setAppState("gameover");
         break;
       default:
         setAppState("idle");
@@ -82,6 +86,10 @@ export default function Session() {
 
   if (error) {
     return <Alert>{error}</Alert>;
+  }
+
+  if (appState === "gameover") {
+    return <Gameover onContinue={() => setAppState("idle")} />;
   }
 
   if (appState === "idle") {

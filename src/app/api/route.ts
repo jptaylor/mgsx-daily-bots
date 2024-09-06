@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 
   const payload = {
     bot_profile,
-    max_duration: 600,
+    max_duration,
     services,
     config,
   };

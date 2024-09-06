@@ -24,6 +24,7 @@ const assets = [
   "/zip.wav",
   "/gunshot.wav",
   "/music.mp3",
+  "/gameover.mp3",
   "/agent_base.png",
   "/hal_base.png",
   "/meiling_base.png",
