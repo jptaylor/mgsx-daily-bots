@@ -8,11 +8,12 @@ import {
 import { AppContext } from "@/context";
 import { useIdleTimer } from "@/hooks/useIdleTimer";
 
+import { Alert } from "./ui/alert";
 import CallNotification from "./CallNotification";
 import Footer from "./Footer";
 import OSD from "./OSD";
 import Phonebook from "./Phonebook";
-import Pixelate from "./Pixelate";
+import TitleScreen from "./TitleScreen";
 import Transcript from "./Transcript";
 
 export default function Session() {
@@ -20,9 +21,9 @@ export default function Session() {
   const transportState = useVoiceClientTransportState();
 
   const [error, setError] = useState<string | null>(null);
-  const [appState, setAppState] = useState<
-    "idle" | "ready" | "connecting" | "connected"
-  >("idle");
+  const [appState, setAppState] = useState<"idle" | "connecting" | "connected">(
+    "idle"
+  );
   const { switchCharacter, isCalling } = useContext(AppContext);
   const [showPhonebook, setShowPhonebook] = useState<boolean | undefined>(
     undefined
@@ -40,9 +41,6 @@ export default function Session() {
     // We only need a subset of states to determine the ui state,
     // so this effect helps avoid excess inline conditionals.
     switch (transportState) {
-      case "initialized":
-        setAppState("ready");
-        break;
       case "authenticating":
       case "connecting":
       case "connected":
@@ -63,7 +61,6 @@ export default function Session() {
     try {
       // Disable the mic until the bot has joined
       // to avoid interrupting the bot's welcome message
-      voiceClient.enableMic(false);
       await voiceClient.start();
     } catch (e) {
       setError((e as VoiceError).message || "Unknown error occured");
@@ -83,8 +80,12 @@ export default function Session() {
     await voiceClient.disconnect();
   }
 
+  if (error) {
+    return <Alert>{error}</Alert>;
+  }
+
   if (appState === "idle") {
-    return <button onClick={() => start()}>Start</button>;
+    return <TitleScreen handleStart={() => start()} />;
   }
 
   if (appState === "connecting") {
@@ -93,7 +94,6 @@ export default function Session() {
 
   return (
     <div className="flex flex-col h-full items-center w-full">
-      <Pixelate />
       <OSD
         handleTogglePhonebook={() => {
           setShowPhonebook(!showPhonebook);

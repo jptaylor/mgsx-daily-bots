@@ -1,4 +1,5 @@
 import React, { useCallback, useContext, useEffect, useRef } from "react";
+import { useDebounce } from "@uidotdev/usehooks";
 import { VoiceEvent } from "realtime-ai";
 import { useVoiceClientEvent } from "realtime-ai-react";
 
@@ -19,6 +20,7 @@ const Transcript: React.FC<Props> = ({ active }) => {
   const { isCalling, character } = useContext(AppContext);
   const [compiledTranscript, setCompiledTranscript] =
     React.useState<string>("");
+  const debouncedTranscript = useDebounce(compiledTranscript, 500);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(
@@ -35,18 +37,18 @@ const Transcript: React.FC<Props> = ({ active }) => {
   }, [isCalling, character]);
 
   useVoiceClientEvent(
+    VoiceEvent.BotStartedSpeaking,
+    useCallback(() => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    }, [])
+  );
+
+  useVoiceClientEvent(
     VoiceEvent.BotStoppedSpeaking,
     useCallback(() => {
       timeoutRef.current = setTimeout(() => {
         setCompiledTranscript("");
       }, 2000);
-    }, [])
-  );
-
-  useVoiceClientEvent(
-    VoiceEvent.BotStartedSpeaking,
-    useCallback(() => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
     }, [])
   );
 
@@ -72,7 +74,7 @@ const Transcript: React.FC<Props> = ({ active }) => {
         !active && "hidden"
       )}
     >
-      <p className="text-3xl leading-relaxed">{compiledTranscript}</p>
+      <p className="text-3xl leading-relaxed">{debouncedTranscript}</p>
     </div>
   );
 };

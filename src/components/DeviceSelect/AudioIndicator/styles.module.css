@@ -1,0 +1,12 @@
+.bar {
+  background: rgba(255, 255, 255, 0.25);
+  height: 8px;
+  width: 100%;
+  overflow: hidden;
+}
+.bar div {
+  background: theme(colors.green.500);
+  height: 8px;
+  width: 0px;
+  transition: width 0.1s ease;
+}

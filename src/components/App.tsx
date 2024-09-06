@@ -9,6 +9,7 @@ import { VoiceClientAudio, VoiceClientProvider } from "realtime-ai-react";
 import { AppProvider } from "@/context";
 import { config, services, timeout } from "@/rtvi.config";
 
+import Pixelate from "./Pixelate";
 import Session from "./Session";
 import Splash from "./Splash";
 
@@ -28,6 +29,7 @@ const assets = [
   "/naomi_base.png",
   "/roy_base.png",
   "/snake_base.png",
+  "/bg.jpg",
 ];
 
 export default function App() {
@@ -37,7 +39,7 @@ export default function App() {
   const [voiceClient, setVoiceClient] = useState<DailyVoiceClient | null>(null);
 
   useEffect(() => {
-    if (voiceClient) {
+    if (voiceClient || !mountedRef.current) {
       return;
     }
 
@@ -78,6 +80,8 @@ export default function App() {
   return (
     <VoiceClientProvider voiceClient={voiceClient}>
       <AppProvider>
+        <Pixelate />
+
         {showSplash ? (
           <Splash onReady={() => setShowSplash(false)} ready={assetsLoaded} />
         ) : (
