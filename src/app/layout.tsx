@@ -29,7 +29,7 @@ const pixelFont = localFont({
 export const metadata: Metadata = {
   title: "Metal Gear Solid Codec",
   description: "Daily Bots multi-character demo",
-  metadataBase: new URL("https://mgsx-daily-bots.vercel.app/"),
+  metadataBase: new URL("https://mgsx-daily-bots.vercel.app"),
 };
 
 export default function RootLayout({

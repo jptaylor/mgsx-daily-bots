@@ -93,7 +93,7 @@ export const services: VoiceClientServices = {
 };
 
 export const config: VoiceClientConfigOption[] = [
-  { service: "vad", options: [{ name: "params", value: { stop_secs: 0.3 } }] },
+  { service: "vad", options: [{ name: "params", value: { stop_secs: 0.6 } }] },
   {
     service: "tts",
     options: [

@@ -71,16 +71,8 @@ export default function App() {
     });
   }, []);
 
-  if (!voiceClient) {
-    return (
-      <div>
-        <Loader2 className="animate-spin" />
-      </div>
-    );
-  }
-
   return (
-    <VoiceClientProvider voiceClient={voiceClient}>
+    <VoiceClientProvider voiceClient={voiceClient!}>
       <AppProvider>
         <Pixelate />
 
