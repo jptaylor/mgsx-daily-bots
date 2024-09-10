@@ -1,7 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { VoiceError } from "realtime-ai";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
+import { VoiceError, VoiceEvent } from "realtime-ai";
 import {
   useVoiceClient,
+  useVoiceClientEvent,
   useVoiceClientTransportState,
 } from "realtime-ai-react";
 
@@ -12,6 +13,7 @@ import { Alert } from "./ui/alert";
 import CallNotification from "./CallNotification";
 import Footer from "./Footer";
 import Gameover from "./Gameover";
+import MissionComplete from "./MissionComplete";
 import OSD from "./OSD";
 import Phonebook from "./Phonebook";
 import TitleScreen from "./TitleScreen";
@@ -25,6 +27,7 @@ export default function Session() {
   const [appState, setAppState] = useState<
     "idle" | "connecting" | "connected" | "gameover"
   >("idle");
+  const [gameComplete, setGameComplete] = useState<boolean>(false);
   const { switchCharacter, isCalling } = useContext(AppContext);
   const [showPhonebook, setShowPhonebook] = useState<boolean | undefined>(
     undefined
@@ -36,6 +39,25 @@ export default function Session() {
   }, [isCalling]);
 
   useIdleTimer();
+
+  useVoiceClientEvent(
+    VoiceEvent.BotTranscript,
+    useCallback((transcript: string) => {
+      if (transcript.toLocaleLowerCase().includes("extraction on the way")) {
+        setTimeout(() => {
+          setGameComplete(true);
+        }, 4000);
+      }
+    }, [])
+  );
+
+  useVoiceClientEvent(VoiceEvent.BotStoppedSpeaking, () => {
+    if (gameComplete) {
+      setTimeout(() => {
+        disconnect();
+      }, 1000);
+    }
+  });
 
   useEffect(() => {
     // Update app state based on voice client transport state.
@@ -88,8 +110,19 @@ export default function Session() {
     return <Alert>{error}</Alert>;
   }
 
+  if (gameComplete) {
+    return (
+      <MissionComplete
+        onContinue={() => {
+          setAppState("idle");
+          setGameComplete(false);
+        }}
+      />
+    );
+  }
+
   if (appState === "gameover") {
-    return <Gameover onContinue={() => setAppState("idle")} />;
+    return <Gameover onContinue={() => disconnect()} />;
   }
 
   if (appState === "idle") {

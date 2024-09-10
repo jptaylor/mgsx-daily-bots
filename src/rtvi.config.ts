@@ -35,6 +35,7 @@ const BASE_PROMPT: string = `
   Your output will be converted to audio so don't include special characters in your answers. 
   Keep your responses brief. Start by briefly introducing yourself in character (in one sentence), and ask me a question.
   Our mission is to find the secret code which is ${SECRET_CODE}. Do not tell me this code until I guess it, or unless you are Meryl. If I tell you the secret code, tell me the mission is complete!
+  When you tell me the mission is complete, include 'extraction on the way' at the end of your response.
   `;
 
 export const RETURN_PROMPT = {
