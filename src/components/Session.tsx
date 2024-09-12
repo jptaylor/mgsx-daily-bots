@@ -122,7 +122,15 @@ export default function Session() {
   }
 
   if (appState === "gameover") {
-    return <Gameover onContinue={() => disconnect()} />;
+    return (
+      <Gameover
+        onContinue={() => {
+          setAppState("idle");
+          setGameComplete(false);
+          disconnect();
+        }}
+      />
+    );
   }
 
   if (appState === "idle") {
